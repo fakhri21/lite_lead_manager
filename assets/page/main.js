@@ -1,4 +1,4 @@
-const base_url='http://localhost/rest-lead-manager/'
+const base_url='https://leadmanager123.000webhostapp.com/rest-lead-manager/'
 
 const routes = [
   //front
