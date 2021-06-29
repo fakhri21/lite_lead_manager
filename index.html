@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Blank Page</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Sweetalert -->
+  <link rel="stylesheet" href="assets/plugins/sweetalert2/sweetalert2.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap-vue.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+  <link href="assets/dist/css/material-dashboard.min.css" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="assets/custom_css/main.css"> -->
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <template v-if=hal_login>
+             <router-view></router-view>
+       </template>       
+
+      <template v-else>
+        <v-navigation-drawer app v-model="drawer">
+          <v-sheet color="grey lighten-4" class="pa-4">
+            <avatar :username="nama_user"></avatar>
+
+            <div>{{nama_user}}</div>
+            <div><v-btn color="red dark" @click="logout()">Logout</v-btn></div>
+          </v-sheet>
+          <v-list>
+            <v-list-item  :to="{ name: 'profile'}">
+              <v-list-item-action>
+                <v-icon>fa fa-user-circle</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Profil Saya</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item  :to="{ name: 'channel'}">
+              <v-list-item-action>
+                <v-icon>fas fa-funnel-dollar</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title >Atur Channel</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+        <v-app-bar app dark color="primary">
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+          <v-toolbar-title>Lead Manager</v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+          <!-- <v-btn icon>
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn> -->
+        </v-app-bar>
+        <v-main>
+          <router-view></router-view>
+        </v-main>
+      </template>
+      <v-bottom-navigation v-if="!hal_login" app fixed>
+        <v-btn :to="{ name: 'home'}">
+          <span>Home</span>
+          <v-icon>home</v-icon>
+        </v-btn>
+
+        <v-btn :to="{ name: 'leads'}">
+            <span>Leads</span>
+            <v-icon>fas fa-users</v-icon>
+        </v-btn>
+
+        <v-btn :to="{ name: 'pipeline'}">
+          <span>Pipeline</span>
+          <v-icon>fas fa-code-branch</v-icon>
+        </v-btn>
+
+        <!-- <v-btn :to="{ name: 'task'}">
+          <span>Task</span>
+          <v-icon>fa fa-tasks</v-icon>
+        </v-btn> -->
+      </v-bottom-navigation>
+
+    </v-app>
+  </div>
+
+  <script src="assets/plugins/qs/qs.min.js"></script>
+  <!-- Axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"
+    integrity="sha512-a6BdqcSPJ7cKHeWy1Cfbe/hGJeaZEVmPMtyqpII9WFO39OqGhGe+PS0WgtHJxd7a4u0rLV9TPYSkNLtOl8b2gA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="assets/plugins/sweetalert2/sweetalert2.all.js"></script>
+  <!-- Vue -->
+  <script src="assets/plugins/vue/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/2.1.1/vee-validate.min.js" integrity="sha512-jLjJUSXtDg60XWW4hLhfDbCRDnx4gxs4wguthJKwh04T7pgC2QqxeOqc/bXbs4QN8g6rz21qUP3wDCdfIOeDiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/plugins/vue/vue-router.js"></script>
+  <script src="assets/plugins/vue/httpVueLoader.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-avatar@2.3.3/dist/vue-avatar.min.js"></script>
+  <!-- Bootstrap vue -->
+  <script src="assets/plugins/bootstrap/js/bootstrap-vue.js"></script>
+  <!-- page -->
+  <script src="assets/custom_js/dynamic_form.js"></script>
+  <script src="assets/custom_js/custom-filter.js"></script>
+ <!--  <script src="assets/custom_js/main.js"></script> -->
+  <script src="assets/page/main.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<!-- <script src="assets/dist/js/material-dashboard.js" type="text/javascript"></script> -->
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="assets/dist/js/demo.js"></script> -->
+</body>
